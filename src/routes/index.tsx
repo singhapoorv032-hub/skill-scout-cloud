@@ -16,10 +16,7 @@ function Landing() {
       </header>
 
       <section className="mx-auto max-w-6xl px-6 pt-16 pb-24 text-center">
-        <div className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-xs text-muted-foreground mb-8">
-          <Sparkles className="w-3.5 h-3.5 text-primary" />
-          Powered by Lovable AI
-        </div>
+        {/* Powered by AI tag removed */}
         <h1 className="font-display text-6xl md:text-7xl leading-[1.05] tracking-tight">
           Learn anything, <span className="gradient-text italic">adapted to you.</span>
         </h1>
