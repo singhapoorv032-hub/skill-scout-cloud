@@ -60,7 +60,7 @@ function AuthPage() {
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="font-display text-4xl gradient-text whitespace-pre-line">{"Learnify_Ai\n\n"}</h1>
+          <h1 className="font-display text-4xl gradient-text whitespace-pre-line">{"\n\nLearnify_Ai"}</h1>
           <p className="text-sm text-muted-foreground mt-1">Your AI learning companion</p>
         </div>
 
