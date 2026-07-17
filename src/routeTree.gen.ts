@@ -16,7 +16,7 @@ import { Route as AuthenticatedTutorRouteImport } from './routes/_authenticated/
 import { Route as AuthenticatedSkillsRouteImport } from './routes/_authenticated/skills'
 import { Route as AuthenticatedRoleplayRouteImport } from './routes/_authenticated/roleplay'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
-import { Route as AuthenticatedCoursesRouteImport } from './routes/_authenticated/courses'
+import { Route as AuthenticatedCoursesIndexRouteImport } from './routes/_authenticated/courses.index'
 import { Route as AuthenticatedCoursesCourseIdRouteImport } from './routes/_authenticated/courses.$courseId'
 
 const AuthRoute = AuthRouteImport.update({
@@ -53,82 +53,83 @@ const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedCoursesRoute = AuthenticatedCoursesRouteImport.update({
-  id: '/courses',
-  path: '/courses',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
+const AuthenticatedCoursesIndexRoute =
+  AuthenticatedCoursesIndexRouteImport.update({
+    id: '/courses/',
+    path: '/courses/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedCoursesCourseIdRoute =
   AuthenticatedCoursesCourseIdRouteImport.update({
-    id: '/$courseId',
-    path: '/$courseId',
-    getParentRoute: () => AuthenticatedCoursesRoute,
+    id: '/courses/$courseId',
+    path: '/courses/$courseId',
+    getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
-  '/courses': typeof AuthenticatedCoursesRouteWithChildren
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/roleplay': typeof AuthenticatedRoleplayRoute
   '/skills': typeof AuthenticatedSkillsRoute
   '/tutor': typeof AuthenticatedTutorRoute
   '/courses/$courseId': typeof AuthenticatedCoursesCourseIdRoute
+  '/courses/': typeof AuthenticatedCoursesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
-  '/courses': typeof AuthenticatedCoursesRouteWithChildren
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/roleplay': typeof AuthenticatedRoleplayRoute
   '/skills': typeof AuthenticatedSkillsRoute
   '/tutor': typeof AuthenticatedTutorRoute
   '/courses/$courseId': typeof AuthenticatedCoursesCourseIdRoute
+  '/courses': typeof AuthenticatedCoursesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
-  '/_authenticated/courses': typeof AuthenticatedCoursesRouteWithChildren
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/roleplay': typeof AuthenticatedRoleplayRoute
   '/_authenticated/skills': typeof AuthenticatedSkillsRoute
   '/_authenticated/tutor': typeof AuthenticatedTutorRoute
   '/_authenticated/courses/$courseId': typeof AuthenticatedCoursesCourseIdRoute
+  '/_authenticated/courses/': typeof AuthenticatedCoursesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
     | '/auth'
-    | '/courses'
     | '/dashboard'
     | '/roleplay'
     | '/skills'
     | '/tutor'
     | '/courses/$courseId'
+    | '/courses/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/auth'
-    | '/courses'
     | '/dashboard'
     | '/roleplay'
     | '/skills'
     | '/tutor'
     | '/courses/$courseId'
+    | '/courses'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
-    | '/_authenticated/courses'
     | '/_authenticated/dashboard'
     | '/_authenticated/roleplay'
     | '/_authenticated/skills'
     | '/_authenticated/tutor'
     | '/_authenticated/courses/$courseId'
+    | '/_authenticated/courses/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -188,48 +189,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/courses': {
-      id: '/_authenticated/courses'
+    '/_authenticated/courses/': {
+      id: '/_authenticated/courses/'
       path: '/courses'
-      fullPath: '/courses'
-      preLoaderRoute: typeof AuthenticatedCoursesRouteImport
+      fullPath: '/courses/'
+      preLoaderRoute: typeof AuthenticatedCoursesIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/courses/$courseId': {
       id: '/_authenticated/courses/$courseId'
-      path: '/$courseId'
+      path: '/courses/$courseId'
       fullPath: '/courses/$courseId'
       preLoaderRoute: typeof AuthenticatedCoursesCourseIdRouteImport
-      parentRoute: typeof AuthenticatedCoursesRoute
+      parentRoute: typeof AuthenticatedRouteRoute
     }
   }
 }
 
-interface AuthenticatedCoursesRouteChildren {
-  AuthenticatedCoursesCourseIdRoute: typeof AuthenticatedCoursesCourseIdRoute
-}
-
-const AuthenticatedCoursesRouteChildren: AuthenticatedCoursesRouteChildren = {
-  AuthenticatedCoursesCourseIdRoute: AuthenticatedCoursesCourseIdRoute,
-}
-
-const AuthenticatedCoursesRouteWithChildren =
-  AuthenticatedCoursesRoute._addFileChildren(AuthenticatedCoursesRouteChildren)
-
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedCoursesRoute: typeof AuthenticatedCoursesRouteWithChildren
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
   AuthenticatedRoleplayRoute: typeof AuthenticatedRoleplayRoute
   AuthenticatedSkillsRoute: typeof AuthenticatedSkillsRoute
   AuthenticatedTutorRoute: typeof AuthenticatedTutorRoute
+  AuthenticatedCoursesCourseIdRoute: typeof AuthenticatedCoursesCourseIdRoute
+  AuthenticatedCoursesIndexRoute: typeof AuthenticatedCoursesIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedCoursesRoute: AuthenticatedCoursesRouteWithChildren,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
   AuthenticatedRoleplayRoute: AuthenticatedRoleplayRoute,
   AuthenticatedSkillsRoute: AuthenticatedSkillsRoute,
   AuthenticatedTutorRoute: AuthenticatedTutorRoute,
+  AuthenticatedCoursesCourseIdRoute: AuthenticatedCoursesCourseIdRoute,
+  AuthenticatedCoursesIndexRoute: AuthenticatedCoursesIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
