@@ -8,7 +8,7 @@ function Landing() {
   return (
     <div className="min-h-screen">
       <header className="mx-auto max-w-6xl px-6 py-6 flex items-center justify-between">
-        <div className="font-display text-3xl gradient-text">Lumen</div>
+        <div className="font-display text-3xl gradient-text whitespace-pre-line">{"Learnify_Ai\n\n"}</div>
         <div className="flex gap-3">
           <Link to="/auth"><Button variant="ghost">Sign in</Button></Link>
           <Link to="/auth"><Button>Get started</Button></Link>
@@ -24,7 +24,7 @@ function Landing() {
           Learn anything, <span className="gradient-text italic">adapted to you.</span>
         </h1>
         <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto">
-          Lumen generates personalized courses, answers your questions in real time, and tracks
+          Learnify_Ai generates personalized courses, answers your questions in real time, and tracks
           the skills you're building — like having a private tutor for everything.
         </p>
         <div className="mt-10 flex gap-3 justify-center">
