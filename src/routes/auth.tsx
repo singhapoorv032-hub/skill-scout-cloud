@@ -9,7 +9,7 @@ import { lovable } from "@/integrations/lovable";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/auth")({
-  head: () => ({ meta: [{ title: "Sign in — Lumen" }, { name: "description", content: "Sign in or create your Lumen account." }] }),
+  head: () => ({ meta: [{ title: "Sign in — Learnify_Ai" }, { name: "description", content: "Sign in or create your Learnify_Ai account." }] }),
   component: AuthPage,
 });
 
@@ -60,7 +60,7 @@ function AuthPage() {
     <div className="min-h-screen flex items-center justify-center px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="font-display text-4xl gradient-text">Lumen</h1>
+          <h1 className="font-display text-4xl gradient-text whitespace-pre-line">{"Learnify_Ai\n\n"}</h1>
           <p className="text-sm text-muted-foreground mt-1">Your AI learning companion</p>
         </div>
 
