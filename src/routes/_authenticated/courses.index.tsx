@@ -11,7 +11,7 @@ import { generateCourse } from "@/lib/courses.functions";
 import { toast } from "sonner";
 import { Sparkles, Loader2 } from "lucide-react";
 
-export const Route = createFileRoute("/_authenticated/courses")({
+export const Route = createFileRoute("/_authenticated/courses/")({
   head: () => ({ meta: [{ title: "Courses — Lumen" }] }),
   component: CoursesPage,
 });
